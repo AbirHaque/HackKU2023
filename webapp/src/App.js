@@ -11,7 +11,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CompositionCard />} />
+        {/* <Route path="/" element={<CompositionCard />} />
+        <Route path="/" element={<WikiListView />} /> */}
+        <Route path="/" element={<WikiCard />} />
       </Routes>
     </Router>
     // <div className="App">
