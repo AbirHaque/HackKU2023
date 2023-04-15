@@ -3,7 +3,7 @@ const mongoose = require('mongoose') // import mongoose
 const Schema = mongoose.Schema
 
 // Create the Schema for Mongoose that corresponds to that type we set in GraphQL
-const comprehensionSchema = new Schema({
+const comprehension = new Schema({
 
     title: {
         type: String,
@@ -28,4 +28,4 @@ const comprehensionSchema = new Schema({
 
 })
 
-module.exports = mongoose.model('Comprehension', comprehensionSchema) // create and export the model
+module.exports = mongoose.model('Comprehension', comprehension) // create and export the model
