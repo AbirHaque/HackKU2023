@@ -1,0 +1,16 @@
+#mutation {
+#  createComprehension(comprehensionInput: {
+#    title: "Best Parks in Austin",
+#    text: "Zilker is the best park ...",
+#    key_phrases: ["phrase 1","phrase 2"],
+#    scraped_data: ["1","2"]
+#    date: "2019-06-11T15:53:43.964Z"})
+#  {
+#    _id
+#    title
+#  }
+#}
+
+mutation {
+  deleteComprehension(id: "643a99c2827f035a4f64bdcb")
+}
