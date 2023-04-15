@@ -1,6 +1,5 @@
-from flask import Flask, redirect, url_for, request, jsonify
+from flask import Flask, request, jsonify
 import spacy
-import pytextrank
 from urllib.request import urlopen
 import json
 import bs4
