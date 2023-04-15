@@ -1,0 +1,6 @@
+flask
+spacy
+pytextrank
+urlopen
+json
+bs4
