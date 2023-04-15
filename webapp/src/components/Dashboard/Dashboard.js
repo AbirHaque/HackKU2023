@@ -11,7 +11,7 @@ const Dashboard = () => {
         <div className='CompositionListView'></div>
         <CompositionListView/>
         <div className='TextEditorView'></div>
-        <TextEditorViwe/>
+        <TextEditorView/>
         <div className='WikiListView'></div>
         <WikiListView/>
     </div>
