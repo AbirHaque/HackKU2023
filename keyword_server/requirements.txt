@@ -1,4 +1,1 @@
 Flask
-spacy
-pytextrank
-bs4
