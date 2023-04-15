@@ -35,4 +35,5 @@ def get_keywords():
 	return jsonify({        "final_phrases": final_phrases,"scraped_data":scraped_data})
 
 
+#app.run(host='0.0.0.0', port=8080)
 app.run(host='0.0.0.0', port=8080)
