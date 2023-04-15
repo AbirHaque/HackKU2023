@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import React, {useEffect, useState} from "react"
 
 import CompositionCard from './components/Composition/CompositionCard';
+import WikiCard from './components/Wiki/WikiCard';
 
 import './css/App.css';
 
