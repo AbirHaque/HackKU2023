@@ -1,19 +1,19 @@
-from flask import Flask, redirect, url_for, request, jsonify
-import spacy
-import pytextrank
+from flask import Flask, request, jsonify
+from spacy import load
 from urllib.request import urlopen
 import json
-import bs4
+from bs4 import BeautifulSoup
 
 app = Flask('app')
-
-
+@app.route('/')
+def home():
+    return 'Wiki Keywords API'
 @app.route('/get_wiki_keywords', methods=['GET'])
 def get_keywords():
 	text = request.args.get('text')
 	num_phrases = int(request.args.get('num_phrases'))
 	# load a spaCy model, depending on language, scale, etc.
-	nlp = spacy.load("en_core_web_sm")
+	nlp = load("en_core_web_sm")
 	# add PyTextRank to the spaCy pipeline
 	nlp.add_pipe("textrank")
 	doc = nlp(text)
@@ -26,7 +26,7 @@ def get_keywords():
 		data_json = json.loads(response.read())
 		if (len(data_json[3])==1):
 			html=urlopen(data_json[3][0])
-			soup = bs4.BeautifulSoup(html, "html.parser")
+			soup = BeautifulSoup(html, "html.parser")
 			p_tags = soup.find_all("p")
 			p_tags=[tag for tag in p_tags if tag.has_attr("class")==False] 
 			summary=str(p_tags[0])
