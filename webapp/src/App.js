@@ -3,8 +3,7 @@ import logo from './logo.svg';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import React, {useEffect, useState} from "react"
 
-import CompositionCard from './components/Composition/CompositionCard';
-import WikiCard from './components/Wiki/WikiCard';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import './css/App.css';
 
@@ -12,9 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<CompositionCard />} />
-        <Route path="/" element={<WikiListView />} /> */}
-        <Route path="/" element={<WikiCard />} />
+        <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
     // <div className="App">
