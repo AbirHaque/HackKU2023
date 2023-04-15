@@ -31,39 +31,37 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
             date: String
         }
 
-
         type Query {
             comprehension(_id: String): Comprehension
+            comprehensions:[Comprehension]
           }
 
-        type comprehensionMutation {
+        type Mutation {
             deleteComprehension(id: ID): String
             createComprehension(comprehensionInput: ComprehensionInput): Comprehension
+            updateComprehension(id: ID, comprehensionInput:ComprehensionInput): String
         }
 
         schema {
             query: Query
-            mutation: comprehensionMutation
+            mutation: Mutation
             
         }
     `),
     rootValue: {
-        comprehension: (args) => {
-
-            // return all the Comprehension unfiltered using Model
-            /*return Comprehension.find().then(comprehension => {
-                return comprehension
-            }).catch(err => {
-                throw err
-            })*/
-            return Comprehension.findById(id=args.id)
+        comprehension: async function(args) {
+            return await Comprehension.findById(id=new ObjectId(args._id))
+        },
+        comprehensions:(args)=>{
+            return Comprehension.find({})
         },
         createComprehension: (args) => {
 
             const comprehension = new Comprehension({
                 title: args.comprehensionInput.title,
                 text: args.comprehensionInput.text,
-                description: args.comprehensionInput.description,
+                key_phrases: args.comprehensionInput.key_phrases,
+                scraped_data: args.comprehensionInput.scraped_data,
                 date: new Date()
             })
 
@@ -75,6 +73,24 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
                 console.log(err)
                 throw err
             })
+        },
+        updateComprehension: async function (args) {
+            try{
+                await Comprehension.updateOne(
+                    { "_id" : new ObjectId(args.id) },
+                    {
+                        "title": args.comprehensionInput.title,
+                        "text": args.comprehensionInput.text,
+                        "key_phrases": args.comprehensionInput.key_phrases,
+                        "scraped_data": args.comprehensionInput.scraped_data,
+                        "date": new Date()
+                    }
+                )
+                return "Success";
+            }
+            catch(e){
+                return "Fail";
+            }
         },
         deleteComprehension: async function (args) {
             try{
