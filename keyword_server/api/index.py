@@ -6,8 +6,9 @@ import json
 import bs4
 
 app = Flask('app')
-
-
+@app.route('/')
+def home():
+    return 'Wiki Keywords API'
 @app.route('/get_wiki_keywords', methods=['GET'])
 def get_keywords():
 	text = request.args.get('text')
