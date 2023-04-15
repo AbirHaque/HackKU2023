@@ -32,9 +32,9 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
         }
 
 
-        type comprehensionQuery {
-            comprehensions: [Comprehension!]!
-        }
+        type Query {
+            comprehension(_id: String): Comprehension
+          }
 
         type comprehensionMutation {
             deleteComprehension(id: ID): String
@@ -42,20 +42,21 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
         }
 
         schema {
-            query: comprehensionQuery
+            query: Query
             mutation: comprehensionMutation
             
         }
     `),
     rootValue: {
-        comprehension: () => {
+        comprehension: (args) => {
 
             // return all the Comprehension unfiltered using Model
-            return Comprehension.find().then(comprehension => {
+            /*return Comprehension.find().then(comprehension => {
                 return comprehension
             }).catch(err => {
                 throw err
-            })
+            })*/
+            return Comprehension.findById(id=args.id)
         },
         createComprehension: (args) => {
 
