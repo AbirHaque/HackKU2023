@@ -18,7 +18,7 @@ const textEditor = ({ text, onChangeText }) => (
     id="comment"
     placeholder="Insert a section here..."
     required={true}
-    rows={10}
+    rows={15}
     cols={50}
   />
 </div>

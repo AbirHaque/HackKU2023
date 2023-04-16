@@ -2,6 +2,7 @@
 import React from 'react';
 import WikiCard from './WikiCard';
 import { Accordion } from 'flowbite-react';
+import Skeleton from 'react-loading-skeleton';
 
 const WikiListView = ({wikiData}) => {
 
@@ -16,13 +17,13 @@ const WikiListView = ({wikiData}) => {
          {wikiData.map((acc, index) => (
            <Accordion.Panel>
            <Accordion.Title>
-           {acc.title}
+           {acc.title || <Skeleton />}
            </Accordion.Title>
            <Accordion.Content>
            {(
                 <p
                   className="mb-2 text-gray-500 dark:text-gray-400"
-                  dangerouslySetInnerHTML={{ __html: ((acc.content).replaceAll("<a","<u><a")).replaceAll("</a>","</a></u>") }}
+                  dangerouslySetInnerHTML={{ __html: ((acc.content || <Skeleton />).replaceAll("<a","<u><a")).replaceAll("</a>","</a></u>") }}
                 />
               ) }
            </Accordion.Content>
