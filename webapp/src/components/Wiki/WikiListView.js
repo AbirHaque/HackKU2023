@@ -31,16 +31,7 @@ const WikiListView = () => {
   return (
     <>
     <p class="text-2xl text-gray-900 dark:text-white">Wiki Links</p>
-    {/* <ul className="title-list">
-      {titles.map((title, index) => (
-        <WikiCard key={index} title={title} />
-      ))}
-    </ul>
-    <ul className="summary-list">
-      {summaries.map((summary, index) => (
-        <WikiCard key={index} summary={summary} />
-      ))}
-    </ul> */}
+ 
         <Accordion alwaysOpen={true}>
          {accData.map((acc, index) => (
            <Accordion.Panel>
@@ -48,57 +39,21 @@ const WikiListView = () => {
            {acc.title}
            </Accordion.Title>
            <Accordion.Content>
-             <p className="mb-2 text-gray-500 dark:text-gray-400">
-             {acc.content}        
-              </p>
+           {index === 0 ? (
+                <p
+                  className="mb-2 text-gray-500 dark:text-gray-400"
+                  dangerouslySetInnerHTML={{ __html: acc.content }}
+                />
+              ) : (
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  {acc.content}
+                </p>
+              )}
            </Accordion.Content>
          </Accordion.Panel>
           ))} 
       
-      {/* <Accordion.Panel>
-        <Accordion.Title>
-          Is there a Figma file available?
-        </Accordion.Title>
-        <Accordion.Content>
-          <p className="mb-2 text-gray-500 dark:text-gray-400"></p>
-
-        </Accordion.Content>
-      </Accordion.Panel>
-      <Accordion.Panel>
-        <Accordion.Title>
-          What are the differences between Flowbite and Tailwind UI?
-        </Accordion.Title>
-        <Accordion.Content>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.
-          </p>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.
-          </p>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Learn more about these technologies:
-          </p>
-          <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-            <li>
-              <a
-                href="https://flowbite.com/pro/"
-                className="text-blue-600 hover:underline dark:text-blue-500"
-              >
-                Flowbite Pro
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://tailwindui.com/"
-                rel="nofollow"
-                className="text-blue-600 hover:underline dark:text-blue-500"
-              >
-                Tailwind UI
-              </a>
-            </li>
-          </ul>
-        </Accordion.Content>
-      </Accordion.Panel> */}
+    
     </Accordion>
     
     </>
