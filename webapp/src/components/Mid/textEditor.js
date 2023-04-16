@@ -10,10 +10,7 @@ const textEditor = ({ text, onChangeText }) => (
   // />
   <div id="textarea">
   <div className="mb-2 block">
-    <Label
-      htmlFor="comment"
-      value="Your message"
-    />
+<br></br>
   </div>
   <Textarea
     id="comment"

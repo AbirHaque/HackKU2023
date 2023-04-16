@@ -28,7 +28,9 @@ const TextEditorView = () => {
 
   return (
     <div className="text-editor-view">
-      <Title title={title} />
+    <p class="text-center text-2xl text-gray-900 dark:text-white"><Title title={title} /></p>
+
+      {/* <Title title={title} /> */}
       <TextEditor text={text} onChangeText={setText} />
       <div class="h-20 grid grid-cols-3 gap-10 content-center">      
       <GenerateButton onClick={handleGenerate} />
