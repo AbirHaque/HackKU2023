@@ -2,6 +2,8 @@
 import React from 'react';
 import {useState,useEffect} from "react";
 import CompositionCard from './CompositionCard';
+import { Sidebar } from 'flowbite-react';
+import { HiAnnotation } from 'react-icons/hi';
 
 const CompositionListView = () => {
   var url="http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}";

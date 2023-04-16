@@ -30,7 +30,9 @@ const WikiListView = () => {
 
   return (
     <>
-    <p class="text-2xl text-gray-900 dark:text-white">Wiki Links</p>
+    {/* <p class="text-2xl text-gray-900 dark:text-white">Wiki Links</p> */}
+    <p class="text-center text-2xl text-gray-900 dark:text-white">Wiki Links</p>
+    <br></br>
  
         <Accordion alwaysOpen={true}>
          {accData.map((acc, index) => (

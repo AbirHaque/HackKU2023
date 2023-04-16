@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <>
     <div className="p-4">
-    <p className="text-gray-900 text-4xl dark:text-white">Dashboard</p>
+    <p className="text-gray-900 text-4xl dark:text-white">SimpliScholar</p>
     
     <br>
     </br>
@@ -38,12 +38,12 @@ const Dashboard = () => {
       </div>
     </div> */}
     <div class="grid grid-cols-6 gap-4">
-  <div class="col-span-1 bg-gray-50 rounded p-4">
+      
   <div class="col-span-1 bg-gray-50 rounded p-4">
       <div class="justify-self-start">        
       <div className='CompositionListView'></div>
+      
         <CompositionListView/></div>
-      </div>
   </div>
   <div class="col-span-3 bg-gray-50 rounded p-4">
   <div class="justify-self-center">
