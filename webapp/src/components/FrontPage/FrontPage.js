@@ -56,7 +56,7 @@ const FrontPage = ({keywords, setKeywords}) => {
     
     <div class="py-10 text-center">
     <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Simpli</span><span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Scholar</span></h1>    
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Get started by uploading your résumé or adding some of your existing skills!</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Start by uploading your résumé or adding some of your existing skills!</p>
     </div>
     <div className="flex items-center justify-center">
 
@@ -75,6 +75,7 @@ const FrontPage = ({keywords, setKeywords}) => {
                 onChange={handleFileChange}
             />
         </div>
+        <br></br>
         <CreatableReactSelect 
             isMulti
             onCreateOption = {knownKeyword => {
