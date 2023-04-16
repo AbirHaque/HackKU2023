@@ -1,16 +1,76 @@
+# Welcome to GraphiQL
+#
+# GraphiQL is an in-browser tool for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will see intelligent
+# typeaheads aware of the current GraphQL type schema and live syntax and
+# validation errors highlighted within the text.
+#
+# GraphQL queries typically start with a "{" character. Lines that start
+# with a # are ignored.
+#
+# An example GraphQL query might look like:
+#
+#     {
+#       field(arg: "value") {
+#         subField
+#       }
+#     }
+#
+# Keyboard shortcuts:
+#
+#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
+#
+#     Merge Query:  Shift-Ctrl-M (or press the merge button above)
+#
+#       Run Query:  Ctrl-Enter (or press the play button above)
+#
+#   Auto Complete:  Ctrl-Space (or just start typing)
+#
+mutation {
+  createComprehension(comprehensionInput: {
+    title: "Best Parks in Austin",
+    text: "Zilker is the best park ...",
+    key_phrases: ["phrase 1","phrase 2"],
+    scraped_data: ["1","2"]
+    date: "2019-06-11T15:53:43.964Z"})
+  {
+    _id
+    title
+  }
+}
+
 #mutation {
-#  createComprehension(comprehensionInput: {
-#    title: "Best Parks in Austin",
-#    text: "Zilker is the best park ...",
-#    key_phrases: ["phrase 1","phrase 2"],
-#    scraped_data: ["1","2"]
-#    date: "2019-06-11T15:53:43.964Z"})
-#  {
-#    _id
-#    title
-#  }
-#}
+  deleteComprehension(id: "643b04a8c5b553b19f64867e")
+}
+
+{
+  comprehension(_id:"643b4dfb3aff8abb16c473f7") {
+		_id
+    title
+    text
+    key_phrases
+    scraped_data
+    date
+  }
+}
+
+{
+  comprehensions {
+  	_id
+    title
+  }
+}
 
 mutation {
-  deleteComprehension(id: "643a99c2827f035a4f64bdcb")
+  updateComprehension(
+    id:"643b4dfb3aff8abb16c473f7",
+    comprehensionInput: {
+      title: "Test",
+      text: "Ayyyyyyyylmao",
+      key_phrases: ["phrase 1","phrase 2"],
+      scraped_data: ["1","2"]
+      date: "2019-06-11T15:53:43.964Z"
+    })
 }

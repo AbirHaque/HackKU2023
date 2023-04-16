@@ -1,5 +1,4 @@
 const mongoose = require('mongoose') // import mongoose
-
 const Schema = mongoose.Schema
 
 // Create the Schema for Mongoose that corresponds to that type we set in GraphQL

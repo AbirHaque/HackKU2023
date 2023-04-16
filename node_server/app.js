@@ -6,6 +6,8 @@ const mongoose = require('mongoose') // impor the mongoose drivers
 const Comprehension = require('./models/comprehension.js')
 require('dotenv').config();
 var {ObjectId} = require('mongodb');
+var request = require('request');
+var axios = require('axios');
 
 const app = express() // create express server
 
@@ -14,6 +16,7 @@ app.use(bodyParser.json()) // use body-parser middleware to parse incoming json
 app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the express-graphql middleware
     // build a graphql schema
     schema: buildSchema(`
+
         type Comprehension {
             _id: ID!
             title: String!
@@ -30,7 +33,6 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
             scraped_data: [String!]
             date: String
         }
-
         type Query {
             comprehension(_id: String): Comprehension
             comprehensions:[Comprehension]
@@ -55,15 +57,31 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
         comprehensions:(args)=>{
             return Comprehension.find({})
         },
-        createComprehension: (args) => {
+        createComprehension: async (args) => {
 
+            tmp_body=null;
+
+            await axios.get('https://keyword.abirhaque.repl.co/get_wiki_keywords?text='+args.comprehensionInput.text+'&num_phrases=5').then(
+                (response) => {
+                    tmp_body=response.data;
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+            
+
+            
+            key_phrases=tmp_body.final_phrases;
+            scraped_data=JSON.stringify(tmp_body.scraped_data);
             const comprehension = new Comprehension({
                 title: args.comprehensionInput.title,
                 text: args.comprehensionInput.text,
-                key_phrases: args.comprehensionInput.key_phrases,
-                scraped_data: args.comprehensionInput.scraped_data,
+                key_phrases: key_phrases,
+                scraped_data: scraped_data,
                 date: new Date()
             })
+
 
             // save new Comprehension using model which will save in MongoDB
             return comprehension.save().then(result => {
@@ -76,13 +94,26 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
         },
         updateComprehension: async function (args) {
             try{
+                tmp_body=null;
+
+                await axios.get('https://keyword.abirhaque.repl.co/get_wiki_keywords?text='+args.comprehensionInput.text+'&num_phrases=5').then(
+                    (response) => {
+                        tmp_body=response.data;
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+
+                key_phrases=tmp_body.final_phrases;
+                scraped_data=JSON.stringify(tmp_body.scraped_data);
                 await Comprehension.updateOne(
                     { "_id" : new ObjectId(args.id) },
                     {
                         "title": args.comprehensionInput.title,
                         "text": args.comprehensionInput.text,
-                        "key_phrases": args.comprehensionInput.key_phrases,
-                        "scraped_data": args.comprehensionInput.scraped_data,
+                        "key_phrases": key_phrases,
+                        "scraped_data":scraped_data,
                         "date": new Date()
                     }
                 )
