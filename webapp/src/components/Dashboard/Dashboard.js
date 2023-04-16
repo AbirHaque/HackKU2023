@@ -37,7 +37,7 @@ const Dashboard = () => {
   return (
     <>
     <div className="p-4">
-    <p className="text-gray-900 text-4xl dark:text-white"><a href="/">📜SimpliScholar</p>
+    <p className="text-gray-900 text-4xl dark:text-white"><a href="/">📜SimpliScholar</a></p>
     
     <br>
     </br>

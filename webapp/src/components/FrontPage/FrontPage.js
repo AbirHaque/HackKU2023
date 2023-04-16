@@ -89,6 +89,7 @@ const FrontPage = ({keywords, setKeywords}) => {
                     return {label: kw}
                 }))
             }}
+
         />
         <button
         onClick={submitHandler}
@@ -97,6 +98,7 @@ const FrontPage = ({keywords, setKeywords}) => {
         Submit
       </button>
     </div>
+
              
 
     </>

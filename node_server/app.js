@@ -91,6 +91,8 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
             // save new Comprehension using model which will save in MongoDB
             return comprehension.save().then(result => {
                 console.log(result)
+                console.log(tmp_body.recommended_phrases)
+                //result.recommended_phrases = tmp_body.recommended_phrases
                 return result
             }).catch(err => {
                 console.log(err)
