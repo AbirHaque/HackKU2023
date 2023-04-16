@@ -23,7 +23,7 @@ const WikiListView = ({wikiData}) => {
            {(
                 <p
                   className="mb-2 text-gray-500 dark:text-gray-400"
-                  dangerouslySetInnerHTML={{ __html: ((acc.content || <Skeleton />).replaceAll("<a","<u><a")).replaceAll("</a>","</a></u>") }}
+                  dangerouslySetInnerHTML={{ __html: ((acc.content.replaceAll("href=\"","href=\"https://wikipedia.org") || <Skeleton />).replaceAll("<a","<u><a")).replaceAll("</a>","</a></u>") }}
                 />
               ) }
            </Accordion.Content>
