@@ -8,8 +8,8 @@
     ],
     "routes":[
         {
-            "src":"/(.*)",
-            "dest":"/"
+            "src":"./index.py",
+            "dest":"/get_wiki_keywords"
         }
     ]
 }
