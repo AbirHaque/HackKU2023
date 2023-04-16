@@ -13,6 +13,7 @@ const CompositionListView = () => {
 
   return (
     <ul className="title-list">
+      <p class="text-2xl text-gray-900 dark:text-white">Comp Titles</p>
       {titles.map((title, index) => (
         <CompositionCard key={index} title={title} />
       ))}

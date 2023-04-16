@@ -1,10 +1,12 @@
 // src/components/newButton.js
 import React from 'react';
+import { Button } from 'flowbite-react';
+
 
 const NewButton = ({ onClick }) => (
-  <button className="new-button" onClick={onClick}>
+    <Button pill={true} className="new-button" onClick={onClick}>
     New
-  </button>
+  </Button>
 );
 
 export default NewButton;

@@ -1,13 +1,21 @@
 import React from 'react';
+import { Accordion } from 'flowbite-react';
 
-const WikiCard = ({ title }) => {
+const WikiCard = ({ title, summary }) => {
+
   return (
-    <>
-    <h1>Ayy lmao4</h1>
-    <li className="title-item">
-      {title}
-    </li>
-    </>
+
+
+    <Accordion.Panel>
+        <Accordion.Title>
+        {title}
+        </Accordion.Title>
+        <Accordion.Content>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+          {summary}        
+           </p>
+        </Accordion.Content>
+      </Accordion.Panel>
   );
 };
 
