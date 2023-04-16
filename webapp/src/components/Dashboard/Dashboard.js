@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const [comps, setComps] = useState([]);
   const [wikiData, setWikiData] = useState([]);
-  const [currentCompId, setCurrentCompId] = useState();
+  const [currentCompIndex, setCurrentCompId] = useState();
 
   useEffect(()=> {
     axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}")
@@ -23,7 +23,7 @@ const Dashboard = () => {
   }, [])
 
   const handleCompChange = (id) => {
-    axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehension(_id:"+id+"){scraped_data}}")
+    axios.get(`http://localhost:5000/graphql?query={comprehension(_id:"${id}"){scraped_data}}`)
           .then((res) => {
             console.log(res.data);
             //setWikiData(res.data.data)
