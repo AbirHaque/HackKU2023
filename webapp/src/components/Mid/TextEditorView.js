@@ -41,6 +41,7 @@ const TextEditorView = ({id}) => {
       console.log(mutation);
       axios.post(url,{"query":mutation})
       .then((res) => {
+        console.log(res.data.data.createComprehension)
         id=res.data.data.createComprehension._id
         //Set wiki things        
       })
