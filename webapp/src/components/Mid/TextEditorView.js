@@ -6,9 +6,10 @@ import NewButton from './NewButton';
 import SaveButton from './SaveButton';
 import GenerateButton from './GenerateButton';
 import FilterOutButton from '../Footer/FilterView';
+import axios from 'axios';
 
 
-const TextEditorView = () => {
+const TextEditorView = ({id}) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('Untitled');
 
@@ -24,6 +25,28 @@ const TextEditorView = () => {
   const handleGenerate = () => {
     // Generate the comprehension and update the title
     setTitle('Generated Title');
+    var url="http://localhost:5000/graphql";
+    if (id!=null){
+      var mutation='mutation{updateComprehension(id:"'+id+'",comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
+      //^^^^Not done
+      axios.post(url,{"query":mutation})
+      .then((res) => {
+        id=res.data._id
+      })
+
+    }
+    else{
+      console.log("EXIST");
+      var mutation='mutation{createComprehension(comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title}}';
+      console.log(mutation);
+      axios.post(url,{"query":mutation})
+      .then((res) => {
+        console.log(res.data.data.createComprehension)
+        id=res.data.data.createComprehension._id
+        //Set wiki things        
+      })
+    }
+  
   };
 
   return (

@@ -89,6 +89,7 @@ const FrontPage = ({keywords, setKeywords}) => {
                     return {label: kw}
                 }))
             }}
+
         />
 
         <div class="flex items-center justify-center w-full p-2">
@@ -111,6 +112,8 @@ const FrontPage = ({keywords, setKeywords}) => {
         
 
     </div>
+
+             
 
     </>
   );

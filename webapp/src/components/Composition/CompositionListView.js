@@ -5,7 +5,7 @@ import CompositionCard from './CompositionCard';
 import { Sidebar, Button } from 'flowbite-react';
 import { HiAnnotation } from 'react-icons/hi';
 
-const CompositionListView = ({comps}) => {
+const CompositionListView = ({handleCompChange, comps}) => {
 
   var url="http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}";
   console.log(url);
@@ -26,19 +26,20 @@ const CompositionListView = ({comps}) => {
   Comprehensions
 </p>
 <br></br>
-<div className="flex flex-col max-h-screen overflow-y-auto">
-  {comps.map((comp, index) => (
-    <div className="my-2 flex justify-center">
-      <Button
-        className="w-full"
-        outline={true}
-        gradientDuoTone={colors[index % colors.length]}
-      >
-        {comp.title}
-      </Button>
-    </div>
-  ))}
-</div>
+<div className="flex flex-col">
+    {comps.map((comp, index) => (
+      <div className="my-2 flex justify-center">
+        <Button
+          className="w-full"
+          outline={true}
+          gradientDuoTone={colors[index % colors.length]}
+          onClick={()=>handleCompChange(index)}
+        >
+          {comp.title}
+        </Button>
+      </div>
+    ))}
+  </div>
 </>
   );
 };

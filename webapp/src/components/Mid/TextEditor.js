@@ -13,6 +13,8 @@ const textEditor = ({ text, onChangeText }) => (
 <br></br>
   </div>
   <Textarea
+    value={text}
+    onChange={(e) => onChangeText(e.target.value)}
     id="comment"
     placeholder="Insert a section here..."
     required={true}
