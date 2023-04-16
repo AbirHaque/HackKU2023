@@ -1,10 +1,11 @@
 // src/components/GenerateButton.js
 import React from 'react';
+import { Button } from 'flowbite-react';
 
 const GenerateButton = ({ onClick }) => (
-  <button className="generate-button" onClick={onClick}>
+  <Button color="purple" pill={true} className="generate-button" onClick={onClick}>
     Generate
-  </button>
+  </Button>
 );
 
 export default GenerateButton;
