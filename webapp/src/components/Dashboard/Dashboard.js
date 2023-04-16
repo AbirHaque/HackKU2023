@@ -8,15 +8,27 @@ import { TextInput } from 'flowbite-react';
 
 const Dashboard = () => {
 
-  const [compTitles, setCompTitles] = useState([]);
+  const [comps, setComps] = useState([]);
+  const [wikiData, setWikiData] = useState([]);
+  const [currentCompId, setCurrentCompId] = useState();
 
   useEffect(()=> {
     axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}")
          .then((res)=> {
-            setCompTitles(res.data.data.comprehensions.map(comp => comp.title))
-            // console.log(res.data.data.comprehensions.map(comp => comp.title))
+            setComps(res.data.data.comprehensions.map(comp => {return {id: comp._id, title: comp.title}}))
+            handleCompChange(res.data.data.comprehensions[0]._id)
+            //setCurrentCompId(res.data.data.comprehensions.)
+            console.log(res.data.data.comprehensions)
          })
   }, [])
+
+  const handleCompChange = (id) => {
+    axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehension(_id:"+id+"){scraped_data}}")
+          .then((res) => {
+            console.log(res.data);
+            //setWikiData(res.data.data)
+          })
+  }
 
   return (
     <>
@@ -55,7 +67,7 @@ const Dashboard = () => {
       <div class="justify-self-start">        
       <div className='CompositionListView'></div>
       
-        <CompositionListView titles={compTitles}/></div>
+        <CompositionListView comps={comps} handleCompChange={handleCompChange}/></div>
   </div>
   <div class="col-span-3 bg-gray-50 rounded p-4">
   <div class="justify-self-center">
