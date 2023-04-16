@@ -22,21 +22,23 @@ const CompositionListView = ({comps}) => {
   // });
   return (
     <>
-<p class="text-center text-2xl text-gray-900 dark:text-white">Comprehensions</p>
+<p class="text-center text-2xl text-gray-900 dark:text-white">
+  Comprehensions
+</p>
 <br></br>
-<div className="flex flex-col">
-    {comps.map((comp, index) => (
-      <div className="my-2 flex justify-center">
-        <Button
-          className="w-full"
-          outline={true}
-          gradientDuoTone={colors[index % colors.length]}
-        >
-          {comp.title}
-        </Button>
-      </div>
-    ))}
-  </div>
+<div className="flex flex-col max-h-screen overflow-y-auto">
+  {comps.map((comp, index) => (
+    <div className="my-2 flex justify-center">
+      <Button
+        className="w-full"
+        outline={true}
+        gradientDuoTone={colors[index % colors.length]}
+      >
+        {comp.title}
+      </Button>
+    </div>
+  ))}
+</div>
 </>
   );
 };
