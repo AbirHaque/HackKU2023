@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <>
     <div className="p-4">
-    <p className="text-gray-900 text-4xl dark:text-white">SimpliScholar</p>
+    <p className="text-gray-900 text-4xl dark:text-white">📜SimpliScholar</p>
     
     <br>
     </br>
