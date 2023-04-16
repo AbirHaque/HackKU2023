@@ -4,7 +4,7 @@ import { Button } from 'flowbite-react';
 
 const GenerateButton = ({ onClick }) => (
   <Button color="purple" pill={true} className="generate-button" onClick={onClick}>
-    Generate
+    Analyze
   </Button>
 );
 

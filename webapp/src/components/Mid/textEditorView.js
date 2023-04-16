@@ -5,7 +5,7 @@ import TextEditor from './TextEditor';
 import NewButton from './NewButton';
 import SaveButton from './SaveButton';
 import GenerateButton from './GenerateButton';
-import { Button } from 'flowbite-react';
+import FilterOutButton from '../Footer/FilterView';
 
 
 const TextEditorView = () => {
@@ -31,9 +31,10 @@ const TextEditorView = () => {
       <Title title={title} />
       <TextEditor text={text} onChangeText={setText} />
       <div class="h-20 grid grid-cols-3 gap-10 content-center">      
-      <SaveButton onClick={handleSave} />
       <GenerateButton onClick={handleGenerate} />
+      <SaveButton onClick={handleSave} />
       <NewButton onClick={handleNew} />
+      
       </div>
     </div>
   );
