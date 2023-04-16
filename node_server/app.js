@@ -136,23 +136,11 @@ app.use('/graphql', graphqlHTTP({ // set up our graphql endpoint with the expres
     graphiql: true // enable the graphiql interface to test our queries
 }))
 
-app.get('/',(req,res)=>{
-    res.redirect('/home');
+app.get('/start',(req,res)=>{
+    res.send("This page is asks for a PDF/CV/areas of knowledge");
 });
 app.get('/home',(req,res)=>{
-    res.send("This page is a filler welcome page (or something else)");
-});
-app.get('/get_all_comprehensions',(req,res)=>{
-    res.send("This page has a list of all comprensions you can choose from. Not all details should be present for each comprehension here.");
-
-});
-app.post('/get_comprehension',(req,res)=>{
-    res.send("This page should have be have all details of a single comprehension.");
-    
-});
-app.post('/create_comprehension',(req,res)=>{
-    res.send("This page should allow you to create a single comprehension.");
-    
+    res.send("This page is the dashboard");
 });
 
 // connect to our MongoDB server.
