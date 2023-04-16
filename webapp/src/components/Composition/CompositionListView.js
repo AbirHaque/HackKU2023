@@ -2,13 +2,14 @@
 import React from 'react';
 import {useState,useEffect} from "react";
 import CompositionCard from './CompositionCard';
-import { Sidebar } from 'flowbite-react';
+import { Sidebar, Button } from 'flowbite-react';
 import { HiAnnotation } from 'react-icons/hi';
 
 const CompositionListView = ({comps}) => {
 
   var url="http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}";
   console.log(url);
+  const colors = ['purpleToBlue', 'cyanToBlue', 'greenToBlue'];
   // fetch(url).then((response)=>response.json())
   // .then((data)=>{
   //   var comprehensions=data.data.comprehensions;
@@ -23,26 +24,22 @@ const CompositionListView = ({comps}) => {
     <>
 <p class="text-center text-2xl text-gray-900 dark:text-white">Comprehensions</p>
 <br></br>
-<div className="flex">          
-
-  <Sidebar aria-label="Comprehension List">
-  <Sidebar.Items>
-
-    {comps.map((comp) => (
-            <Sidebar.ItemGroup>
-              <Sidebar.Item
-              href="#"
-              icon={HiAnnotation}
-            >
-              {comp.title}
-            </Sidebar.Item>
-            </Sidebar.ItemGroup>
+<div className="flex flex-col">
+    {comps.map((comp, index) => (
+      <div className="my-2 flex justify-center">
+        <Button
+          className="w-full"
+          outline={true}
+          gradientDuoTone={colors[index % colors.length]}
+        >
+          {comp.title}
+        </Button>
+      </div>
     ))}
-  </Sidebar.Items>
-</Sidebar>
-</div>
+  </div>
 </>
   );
 };
+
 
 export default CompositionListView;

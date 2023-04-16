@@ -11,32 +11,34 @@ const Dashboard = () => {
   const [comps, setComps] = useState([]);
   const [wikiData, setWikiData] = useState([]);
   const [currentCompIndex, setCurrentCompId] = useState();
-  const [text, setText] = useState('');
-  const [title, setTitle] = useState('Untitled');
 
   useEffect(()=> {
     axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}")
          .then((res)=> {
             setComps(res.data.data.comprehensions.map(comp => {return {id: comp._id, title: comp.title}}))
-            handleCompChange(res.data.data.comprehensions[0]._id)
+            //handleCompChange(res.data.data.comprehensions[1]._id)
             //setCurrentCompId(res.data.data.comprehensions.)
             console.log(res.data.data.comprehensions)
          })
   }, [])
 
-  const handleCompChange = (id) => {
-    axios.get(`http://localhost:5000/graphql?query={comprehension(_id:"${id}"){scraped_data}}`)
+
+  const handleCompChange = (index) => {
+    axios.get(`http://localhost:5000/graphql?query={comprehension(_id:"${comps[index].id}"){scraped_data}}`)
           .then((res) => {
-            console.log(res.data);
-            //setWikiData(res.data.data)
-          })
+            console.log(res.data.data.comprehension.scraped_data[0])
+            // let scraped_data = res.data.data.comprehension.scraped_data;
+            // setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
+            // setCurrentCompIndex(index);
+        })
   }
 
  
+
   return (
     <>
     <div className="p-4">
-    <p className="text-gray-900 text-4xl dark:text-white">📜SimpliScholar</p>
+    <p className="text-gray-900 text-4xl dark:text-white"><a href="/">📜SimpliScholar</a></p>
     
     <br>
     </br>
@@ -81,7 +83,7 @@ const Dashboard = () => {
   <div class="col-span-2 bg-gray-50 rounded p-4">
           <div class="justify-self-end">
         <div className='WikiListView'></div>
-        <WikiListView/>
+        <WikiListView wikiData={wikiData}/>
       </div>
   </div>
 
