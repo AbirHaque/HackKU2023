@@ -37,8 +37,8 @@ const TextEditorView = ({id, setWikiData}) => {
     }
     else{
       console.log("EXIST");
-      var mutation='mutation{createComprehension(comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
-      console.log(mutation);
+      var mutation='mutation{createComprehension(comprehensionInput:{title:\"'+title+'\",text:\"'+text.replaceAll("\n"," ")+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
+      console.log(mutation.replaceAll("%0A",""));
       axios.post(url,{"query":mutation})
       .then((res) => {
         id=res.data.data.createComprehension._id
