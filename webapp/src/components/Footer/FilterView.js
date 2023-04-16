@@ -11,7 +11,7 @@ const FilterOutButton = ({ onClick }) => (
 <TextInput
   id="email3"
   type="email"
-  placeholder="name@flowbite.com"
+  placeholder="What you know:"
 
 />
 
