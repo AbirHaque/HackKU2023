@@ -26,9 +26,10 @@ const Dashboard = () => {
   const handleCompChange = (index) => {
     axios.get(`http://localhost:5000/graphql?query={comprehension(_id:"${comps[index].id}"){scraped_data}}`)
           .then((res) => {
-            console.log(res.data.data.comprehension.scraped_data[0])
+            let scraped_data = JSON.parse(res.data.data.comprehension.scraped_data[0])
+            console.log(scraped_data.map(article => {return {title: article.topic, content: article.summary}}))
             // let scraped_data = res.data.data.comprehension.scraped_data;
-            // setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
+            setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
             // setCurrentCompIndex(index);
         })
   }
