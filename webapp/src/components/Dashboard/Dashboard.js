@@ -26,10 +26,9 @@ const Dashboard = () => {
   const handleCompChange = (index) => {
     axios.get(`http://localhost:5000/graphql?query={comprehension(_id:"${comps[index].id}"){scraped_data}}`)
           .then((res) => {
-            let scraped_data = JSON.parse(res.data.data.comprehension.scraped_data[0])
-            console.log(scraped_data.map(article => {return {title: article.topic, content: article.summary}}))
+            console.log(res.data.data.comprehension.scraped_data[0])
             // let scraped_data = res.data.data.comprehension.scraped_data;
-            setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
+            // setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
             // setCurrentCompIndex(index);
         })
   }
@@ -78,7 +77,7 @@ const Dashboard = () => {
   <div class="col-span-3 bg-gray-50 rounded p-4">
   <div class="justify-self-center">
       <div className='TextEditorView'></div>
-        <TextEditorView id={currentCompIndex}/>
+        <TextEditorView id={currentCompIndex} setWikiData={setWikiData}/>
       </div>
   </div>
   <div class="col-span-2 bg-gray-50 rounded p-4">

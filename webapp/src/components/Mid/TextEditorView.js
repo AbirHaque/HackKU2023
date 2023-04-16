@@ -9,7 +9,7 @@ import FilterOutButton from '../Footer/FilterView';
 import axios from 'axios';
 
 
-const TextEditorView = ({id}) => {
+const TextEditorView = ({id, setWikiData}) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('Untitled');
 
@@ -27,23 +27,24 @@ const TextEditorView = ({id}) => {
     setTitle('Generated Title');
     var url="http://localhost:5000/graphql";
     if (id!=null){
-      var mutation='mutation{updateComprehension(id:"'+id+'",comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
+      /*var mutation='mutation{updateComprehension(id:"'+id+'",comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
       //^^^^Not done
       axios.post(url,{"query":mutation})
       .then((res) => {
         id=res.data._id
-      })
+      })*/
 
     }
     else{
       console.log("EXIST");
-      var mutation='mutation{createComprehension(comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title}}';
+      var mutation='mutation{createComprehension(comprehensionInput:{title:\"'+title+'\",text:\"'+text+'\",key_phrases:[],scraped_data:[],date:\"\"}){_id,title,key_phrases,scraped_data}}';
       console.log(mutation);
       axios.post(url,{"query":mutation})
       .then((res) => {
-        console.log(res.data.data.createComprehension)
         id=res.data.data.createComprehension._id
-        //Set wiki things        
+        //Set wiki things      
+        let scraped_data = JSON.parse(res.data.data.createComprehension.scraped_data[0]);  
+        setWikiData(scraped_data.map(article => {return {title: article.topic, content: article.summary}}));
       })
     }
   
