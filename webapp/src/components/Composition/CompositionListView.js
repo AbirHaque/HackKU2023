@@ -5,7 +5,7 @@ import CompositionCard from './CompositionCard';
 import { Sidebar } from 'flowbite-react';
 import { HiAnnotation } from 'react-icons/hi';
 
-const CompositionListView = ({titles}) => {
+const CompositionListView = ({comps}) => {
 
   var url="http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}";
   console.log(url);
@@ -20,12 +20,28 @@ const CompositionListView = ({titles}) => {
     
   // });
   return (
-    <ul className="title-list">
-      <p className="text-2xl text-gray-900 dark:text-white">Comp Titles</p>
-      {titles.map((title, index) => (
-        <CompositionCard key={index} title={title} />
-      ))}
-    </ul>
+    <>
+<p class="text-center text-2xl text-gray-900 dark:text-white">Comprehensions</p>
+<br></br>
+<div className="flex">          
+
+  <Sidebar aria-label="Comprehension List">
+  <Sidebar.Items>
+
+    {comps.map((comp) => (
+            <Sidebar.ItemGroup>
+              <Sidebar.Item
+              href="#"
+              icon={HiAnnotation}
+            >
+              {comp.title}
+            </Sidebar.Item>
+            </Sidebar.ItemGroup>
+    ))}
+  </Sidebar.Items>
+</Sidebar>
+</div>
+</>
   );
 };
 
