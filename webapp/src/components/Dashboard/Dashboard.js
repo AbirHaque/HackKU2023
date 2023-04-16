@@ -2,14 +2,26 @@ import React from 'react';
 import CompositionListView from '../Composition/CompositionListView';
 import TextEditorView from '../Mid/TextEditorView';
 import WikiListView from '../Wiki/WikiListView';
+import FilterOutButton from '../Footer/FilterView';
+import { TextInput } from 'flowbite-react';
 
 const Dashboard = () => {
   return (
     <>
     <div className="p-4">
     <p className="text-gray-900 text-4xl dark:text-white">Dashboard</p>
+    
     <br>
     </br>
+    
+  <div class="col-span-6 bg-gray-50 rounded p-4">
+  <div class="justify-self-end">
+        <div className='FilterOutButton'></div>
+        <FilterOutButton/>
+        </div>
+  </div>
+  <br></br>
+
     {/* <div class="grid grid-cols-3 gap-8">
     <div class="col-span-1 bg-gray-200 rounded p-4">
       <div class="justify-self-start">        
@@ -45,6 +57,7 @@ const Dashboard = () => {
         <WikiListView/>
       </div>
   </div>
+
 </div>
 
     </div>
