@@ -19,16 +19,12 @@ const WikiListView = ({wikiData}) => {
            {acc.title}
            </Accordion.Title>
            <Accordion.Content>
-           {index === 0 ? (
+           {(
                 <p
                   className="mb-2 text-gray-500 dark:text-gray-400"
-                  dangerouslySetInnerHTML={{ __html: acc.content }}
+                  dangerouslySetInnerHTML={{ __html: ((acc.content).replaceAll("<a","<u><a")).replaceAll("</a>","</a></u>") }}
                 />
-              ) : (
-                <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  {acc.content}
-                </p>
-              )}
+              ) }
            </Accordion.Content>
          </Accordion.Panel>
           ))} 
