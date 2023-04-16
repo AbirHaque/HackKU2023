@@ -51,10 +51,30 @@ const FrontPage = ({keywords, setKeywords}) => {
   return (
     
     <>
-        <div className="text-editor-view">
-        <input type="file" onChange={handleFileChange}></input>
-        </div>
-        <button onClick={uploadPdfHandler}>Load Keywords from Resume</button>
+    <div className="container mx-auto px-4 py-5">
+      <div className="text-editor-view">
+        <label
+          htmlFor="file-upload"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+        >
+          Choose File
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+      </div>
+      <button
+        onClick={uploadPdfHandler}
+        className="bg-green-500 text-white px-4 py-2 mt-4 rounded-md"
+      >
+        Load Keywords from Resume
+      </button>
+      <div className="mt-4"></div>
+    
+       
         <CreatableReactSelect 
             isMulti
             onCreateOption = {knownKeyword => {
@@ -69,8 +89,14 @@ const FrontPage = ({keywords, setKeywords}) => {
                     return {label: kw}
                 }))
             }}
-             />
-        <button onClick={submitHandler}>Submit</button>
+        />
+        <button
+        onClick={submitHandler}
+        className="bg-indigo-500 text-white px-4 py-2 mt-4 rounded-md"
+      >
+        Submit
+      </button>
+    </div>
              
 
     </>
