@@ -1,5 +1,6 @@
 // const url = "https://capstone-projects.herokuapp.com"
 
-const url = "http://localhost:5000/"
+const node_url = "http://localhost:5000/"
+const flask_url = "https://keyword.abirhaque.repl.co/"
 
-export default url;
+export {node_url, flask_url};

@@ -6,12 +6,16 @@ import React, {useEffect, useState} from "react"
 import Dashboard from './components/Dashboard/Dashboard';
 
 import './css/App.css';
+import FrontPage from './components/FrontPage/FrontPage';
 
 function App() {
+  const [knownKeywords, setKnownKeywords] = useState([]);
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<FrontPage setKeywords={setKnownKeywords} keywords={knownKeywords}/>} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
     // <div className="App">

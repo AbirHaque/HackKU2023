@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import CompositionListView from '../Composition/CompositionListView';
 import TextEditorView from '../Mid/TextEditorView';
 import WikiListView from '../Wiki/WikiListView';
@@ -6,6 +7,17 @@ import FilterOutButton from '../Footer/FilterView';
 import { TextInput } from 'flowbite-react';
 
 const Dashboard = () => {
+
+  const [compTitles, setCompTitles] = useState([]);
+
+  useEffect(()=> {
+    axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}")
+         .then((res)=> {
+            setCompTitles(res.data.data.comprehensions.map(comp => comp.title))
+            // console.log(res.data.data.comprehensions.map(comp => comp.title))
+         })
+  }, [])
+
   return (
     <>
     <div className="p-4">
@@ -43,7 +55,7 @@ const Dashboard = () => {
       <div class="justify-self-start">        
       <div className='CompositionListView'></div>
       
-        <CompositionListView/></div>
+        <CompositionListView titles={compTitles}/></div>
   </div>
   <div class="col-span-3 bg-gray-50 rounded p-4">
   <div class="justify-self-center">
