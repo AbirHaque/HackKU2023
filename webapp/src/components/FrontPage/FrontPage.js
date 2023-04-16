@@ -17,7 +17,11 @@ const FrontPage = ({keywords, setKeywords}) => {
         }
     }
 
+    const [loading, setLoading] = useState(false);
+
+
     const uploadPdfHandler = () => {
+        setLoading(true);
 
         var formData = new FormData();
         formData.append("pdfFile", file);
@@ -28,10 +32,12 @@ const FrontPage = ({keywords, setKeywords}) => {
                      .then(keywordData => {
                         console.log(keywordData)
                         setKeywords(keywordData.data.keywords);
+                        setLoading(false);
                      })
                 
               }, (error) => {
                 console.log(error);
+                setLoading(false);
               });
         
         
@@ -99,7 +105,7 @@ const FrontPage = ({keywords, setKeywords}) => {
                 onClick={uploadPdfHandler}
                 className="bg-green-500 text-white px-4 py-2 mt-4 rounded-md mr-10"
             >
-                Load Keywords from Resume
+                {loading ? 'Loading...' : 'Load Keywords from Resume'}
             </button>
             <button
                 onClick={submitHandler}
