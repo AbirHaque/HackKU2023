@@ -11,6 +11,8 @@ const Dashboard = () => {
   const [comps, setComps] = useState([]);
   const [wikiData, setWikiData] = useState([]);
   const [currentCompIndex, setCurrentCompId] = useState();
+  const [text, setText] = useState('');
+  const [title, setTitle] = useState('Untitled');
 
   useEffect(()=> {
     axios.get("http://localhost:5000/graphql"+"?"+"query"+"={comprehensions{_id,title}}")
@@ -30,6 +32,7 @@ const Dashboard = () => {
           })
   }
 
+ 
   return (
     <>
     <div className="p-4">
@@ -72,7 +75,7 @@ const Dashboard = () => {
   <div class="col-span-3 bg-gray-50 rounded p-4">
   <div class="justify-self-center">
       <div className='TextEditorView'></div>
-        <TextEditorView/>
+        <TextEditorView id={currentCompIndex}/>
       </div>
   </div>
   <div class="col-span-2 bg-gray-50 rounded p-4">
