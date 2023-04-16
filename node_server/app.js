@@ -4,12 +4,17 @@ const { graphqlHTTP }= require('express-graphql') // import graphql to use as mi
 const { buildSchema } = require('graphql') // import the function to build our schema
 const mongoose = require('mongoose') // impor the mongoose drivers
 const Comprehension = require('./models/comprehension.js')
+const cors = require('cors');
+const pdfParse = require("pdf-parse");
+const fileUpload = require("express-fileupload");
 require('dotenv').config();
 var {ObjectId} = require('mongodb');
 var request = require('request');
 var axios = require('axios');
 
 const app = express() // create express server
+app.use(fileUpload());
+app.use(cors());
 
 app.use(bodyParser.json()) // use body-parser middleware to parse incoming json
 
@@ -141,6 +146,17 @@ app.get('/start',(req,res)=>{
 });
 app.get('/home',(req,res)=>{
     res.send("This page is the dashboard");
+});
+
+app.post("/extract-text", (req, res) => {
+    if (!req.files && !req.files.pdfFile) {
+        res.status(400);
+        res.end();
+    }
+
+    pdfParse(req.files.pdfFile).then(result => {
+        res.send(result.text);
+    });
 });
 
 // connect to our MongoDB server.
